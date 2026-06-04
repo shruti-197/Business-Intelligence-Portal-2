@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__, static_folder='Frontend', static_url_path='')
 
-DATASET_DIR = os.path.join(os.path.dirname(__file__), 'Dataset')
+DATASET_DIR = os.path.join(os.path.dirname(__file__), 'Frontend', 'Dataset')
 
 # Serve Static HTML files
 @app.route('/')
