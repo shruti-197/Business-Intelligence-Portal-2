@@ -446,6 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const dashboardContainer = document.querySelector('.dashboard-container');
         const currentUserDisplay = document.getElementById('currentUserDisplay');
 
+        const DEFAULT_POWERBI_URL = 'https://app.powerbi.com/reportEmbed?reportId=558e1888-9a6f-4937-86ad-dbe56c3ac2d4&autoAuth=true&ctid=d04744cd-2784-4c96-a235-fa415e08dbea';
         const userEmail = localStorage.getItem('userEmail') || 'default';
         const userKey = `powerBiDashboardUrl_${userEmail}`;
 
@@ -463,15 +464,12 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
 
-        // Load saved dashboard (checks user-specific key, falls back to legacy/global key)
+        // Load saved dashboard (user-specific key → legacy key → default Power BI URL)
         function loadDashboard() {
-            const savedUrl = localStorage.getItem(userKey) || localStorage.getItem('powerBiDashboardUrl');
-            if (savedUrl && dashboardContainer) {
+            const savedUrl = localStorage.getItem(userKey) || localStorage.getItem('powerBiDashboardUrl') || DEFAULT_POWERBI_URL;
+            if (dashboardContainer) {
                 dashboardContainer.innerHTML = `<iframe title="Sales Performance Dashboard" class="dashboard-iframe" src="${savedUrl}" frameborder="0" allowFullScreen="true"></iframe>`;
                 if (powerBiUrlInput) powerBiUrlInput.value = savedUrl;
-            } else if (dashboardContainer) {
-                dashboardContainer.innerHTML = defaultPlaceholderHTML;
-                if (powerBiUrlInput) powerBiUrlInput.value = '';
             }
         }
 
@@ -480,7 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Modal Controls
         if (openEmbedModalBtn && embedModal) {
             openEmbedModalBtn.addEventListener('click', () => {
-                const savedUrl = localStorage.getItem(userKey) || localStorage.getItem('powerBiDashboardUrl') || '';
+                const savedUrl = localStorage.getItem(userKey) || localStorage.getItem('powerBiDashboardUrl') || DEFAULT_POWERBI_URL;
                 if (powerBiUrlInput) powerBiUrlInput.value = savedUrl;
                 embedModal.classList.add('active');
             });
@@ -537,12 +535,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Clear/Reset
         if (clearEmbedBtn) {
             clearEmbedBtn.addEventListener('click', () => {
-                if (confirm('Are you sure you want to reset to the default dashboard placeholder?')) {
+                if (confirm('Are you sure you want to reset to the default Power BI dashboard?')) {
                     localStorage.removeItem(userKey);
                     localStorage.removeItem('powerBiDashboardUrl'); // clear legacy fallback too
                     loadDashboard();
                     embedModal.classList.remove('active');
-                    alert('Reset to default placeholder.');
+                    alert('Reset to default Power BI dashboard.');
                 }
             });
         }
