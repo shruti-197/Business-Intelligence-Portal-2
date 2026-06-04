@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights - Business Intelligence Portal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <i class="fa-solid fa-chart-pie"></i>
+            Business Intelligence Portal
+        </a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            <li><a href="insights.html" class="nav-link">Insights</a></li>
+            <li><a href="manage.html" class="nav-link">Manage Data</a></li>
+            <li><a href="about.html" class="nav-link">Support</a></li>
+            <li><a href="login.html" class="nav-link"><i class="fa-solid fa-user-circle"></i> Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <h1 class="page-title">Key Business Insights</h1>
+
+        <div class="insights-grid">
+            <!-- Insight 1 -->
+            <div class="card insight-card pulse-hover">
+                <i class="fa-solid fa-earth-americas insight-icon"></i>
+                <h3 style="color: var(--text-light); font-weight: 500;">Top Performing Region</h3>
+                <div class="insight-value" id="kpi-best-region">North America</div>
+                <p style="color: var(--text-light); font-size: 0.9rem;">Leading in overall sales volume and YoY growth. Consistent performance across all quarters.</p>
+            </div>
+
+            <!-- Insight 2 -->
+            <div class="card insight-card pulse-hover" style="border-top-color: var(--primary-color);">
+                <i class="fa-solid fa-boxes-stacked insight-icon" style="color: var(--primary-color);"></i>
+                <h3 style="color: var(--text-light); font-weight: 500;">Best Selling Category</h3>
+                <div class="insight-value" id="kpi-top-category">Electronics</div>
+                <p style="color: var(--text-light); font-size: 0.9rem;">Contributes to 42% of total revenue. High margin products driving profitability.</p>
+            </div>
+
+            <!-- Insight 3 -->
+            <div class="card insight-card pulse-hover" style="border-top-color: #2ECC71;">
+                <i class="fa-solid fa-arrow-trend-up insight-icon" style="color: #2ECC71;"></i>
+                <h3 style="color: var(--text-light); font-weight: 500;">Monthly Sales Trend</h3>
+                <div class="insight-value" id="kpi-growth">+15.4%</div>
+                <p style="color: var(--text-light); font-size: 0.9rem;">Strong upward trajectory observed in Q3 compared to the previous quarter averages.</p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 2rem;">
+            <h2 class="section-title">Detailed Analysis Notes</h2>
+            <div style="line-height: 1.8;">
+                <p><strong>Customer Demographics:</strong> The target demographic continues to shift towards the 25-34 age group, indicating a need for optimized mobile marketing campaigns.</p>
+                <hr style="border: none; border-top: 1px solid #eee; margin: 1rem 0;">
+                <p><strong>Inventory Management:</strong> Stockouts in the "Home Appliances" category impacted potential revenue by an estimated 5%. Please review the <em>Manage Data</em> tab to update inventory targets.</p>
+                <hr style="border: none; border-top: 1px solid #eee; margin: 1rem 0;">
+                <p><strong>Action Item:</strong> Focus promotional efforts on the "Accessories" category in the EU region to boost lagging Q4 projections.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Business Intelligence Portal. Confidential & Proprietary.</p>
+    </footer>
+
+    <script src="static/js/main.js"></script>
+</body>
+</html>

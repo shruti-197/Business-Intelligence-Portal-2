@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Business Intelligence Portal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <i class="fa-solid fa-chart-pie"></i>
+            Business Intelligence Portal
+        </a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            <li><a href="insights.html" class="nav-link">Insights</a></li>
+            <li><a href="manage.html" class="nav-link">Manage Data</a></li>
+            <li><a href="about.html" class="nav-link">Support</a></li>
+            <li><a href="login.html" class="nav-link"><i class="fa-solid fa-user-circle"></i> Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="card" style="max-width: 800px; margin: 0 auto;">
+            <h1 class="page-title" style="margin-bottom: 1rem;">Portal Support & Guidelines</h1>
+            
+            <p style="font-size: 1.1rem; text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+                Resources and guidelines for utilizing the Business Intelligence Portal effectively.
+            </p>
+
+            <h2 class="section-title">Dashboard Usage Guidelines</h2>
+            <p style="margin-bottom: 1.5rem;">
+                The Power BI Dashboard embedded within this portal is refreshed daily at 02:00 AM EST. 
+                Any changes made via the <strong>Manage Data</strong> tab by administrators will reflect in the 
+                subsequent scheduled refresh cycle, ensuring high performance during operational hours.
+            </p>
+
+            <h2 class="section-title">Roles & Permissions</h2>
+            <ul style="margin-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Standard Users:</strong> Can view the Dashboard, review Key Insights, and download PDF reports.</li>
+                <li><strong>Administrators:</strong> Have full access, including the ability to add, edit, or delete inventory and sales records directly from the portal.</li>
+            </ul>
+
+            <h2 class="section-title">IT Support Contacts</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                <div style="padding: 1.5rem; background-color: var(--bg-color); border-radius: 4px; text-align: center;">
+                    <i class="fa-solid fa-headset fa-2x" style="color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <strong style="color: var(--text-dark); display: block; margin-bottom: 0.5rem;">Help Desk</strong>
+                    <p style="color: var(--text-light); font-size: 0.9rem;">Ext. 4000<br>support@corporate.internal</p>
+                </div>
+                <div style="padding: 1.5rem; background-color: var(--bg-color); border-radius: 4px; text-align: center;">
+                    <i class="fa-solid fa-database fa-2x" style="color: var(--secondary-color); margin-bottom: 1rem;"></i>
+                    <strong style="color: var(--text-dark); display: block; margin-bottom: 0.5rem;">Data Analytics Team</strong>
+                    <p style="color: var(--text-light); font-size: 0.9rem;">Ext. 4055<br>data-team@corporate.internal</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Business Intelligence Portal. Confidential & Proprietary.</p>
+    </footer>
+
+    <script src="static/js/main.js"></script>
+</body>
+</html>

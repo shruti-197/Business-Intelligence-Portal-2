@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Business Intelligence Portal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <i class="fa-solid fa-chart-pie"></i>
+            Business Intelligence Portal
+        </a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            <li><a href="insights.html" class="nav-link">Insights</a></li>
+            <li><a href="manage.html" class="nav-link">Manage Data</a></li>
+            <li><a href="about.html" class="nav-link">Support</a></li>
+            <li><a href="login.html" class="nav-link"><i class="fa-solid fa-user-circle"></i> Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="login-container">
+            <div class="card">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <i class="fa-solid fa-building fa-3x" style="color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h1 style="color: var(--primary-color); font-size: 1.8rem;">Employee Login</h1>
+                    <p style="color: var(--text-light); margin-top: 0.5rem;">Access the Business Intelligence Portal</p>
+                </div>
+
+                <form class="login-form" id="loginForm">
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label>Login As</label>
+                        <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                            <label style="cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="radio" name="role" value="user" checked> User
+                            </label>
+                            <label style="cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+                                <input type="radio" name="role" value="admin"> Administrator
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">Corporate Email (e.g., admin@company.com)</label>
+                        <input type="text" id="username" name="username" placeholder="email@company.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password (e.g., admin123)</label>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; font-size: 0.9rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" name="remember"> Remember me
+                        </label>
+                        <a href="#" style="color: var(--secondary-color);">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="margin-top: 1rem; width: 100%;">Sign In</button>
+                </form>
+
+                <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-light); padding: 1rem; background-color: var(--bg-color); border-radius: 4px;">
+                    <p style="margin-bottom: 0.5rem;"><strong>Role Based Access Active</strong></p>
+                    <p>Logging in with Admin credentials will unlock the <a href="manage.html" style="color: var(--secondary-color);">Manage Data</a> functionality.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Business Intelligence Portal. Confidential & Proprietary.</p>
+    </footer>
+
+    <script src="static/js/main.js"></script>
+</body>
+</html>

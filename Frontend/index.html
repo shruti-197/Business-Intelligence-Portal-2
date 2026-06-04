@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Business Intelligence Portal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <i class="fa-solid fa-chart-pie"></i>
+            Business Intelligence Portal
+        </a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            <li><a href="insights.html" class="nav-link">Insights</a></li>
+            <li><a href="manage.html" class="nav-link">Manage Data</a></li>
+            <li><a href="about.html" class="nav-link">Support</a></li>
+            <li><a href="login.html" class="nav-link"><i class="fa-solid fa-user-circle"></i> Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <h1 class="page-title">Welcome to the Business Intelligence Portal</h1>
+
+        <div class="overview-grid">
+            <!-- Business Value Description -->
+            <div class="card">
+                <h2 class="section-title">Drive Business Forward</h2>
+                <p style="margin-bottom: 1rem; font-size: 1.1rem;">
+                    The Business Intelligence Portal empowers our team with real-time, actionable insights. 
+                    By centralizing our sales data, this tool ensures that decision-makers, regional managers, 
+                    and operational staff all have access to a single source of truth.
+                </p>
+                <p>
+                    Use this portal to monitor key performance indicators, discover market trends through 
+                    the interactive dashboard, and maintain accurate product records via the management console.
+                </p>
+
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <a href="dashboard.html" class="btn btn-primary" style="flex: 1;"><i class="fa-solid fa-chart-line"></i> View Dashboard</a>
+                    <a href="manage.html" class="btn" style="flex: 1; background-color: var(--bg-color); color: var(--primary-color); border: 1px solid var(--primary-color);"><i class="fa-solid fa-database"></i> Manage Data</a>
+                </div>
+            </div>
+
+            <!-- Quick Links / Features -->
+            <div class="card">
+                <h2 class="section-title">Quick Features</h2>
+                <ul class="tools-list" style="font-size: 1.1rem;">
+                    <li>
+                        <i class="fa-solid fa-chart-pie fa-fw"></i>
+                        <strong>Live Dashboard:</strong> Access embedded Power BI reports updated daily.
+                    </li>
+                    <li style="margin-top: 1rem;">
+                        <i class="fa-solid fa-lightbulb fa-fw"></i>
+                        <strong>Key Insights:</strong> View top-level summaries prepared by the analytics team.
+                    </li>
+                    <li style="margin-top: 1rem;">
+                        <i class="fa-solid fa-pen-to-square fa-fw"></i>
+                        <strong>Data Administration:</strong> Authorized admins can perform CRUD operations on sales records securely.
+                    </li>
+                    <li style="margin-top: 1rem;">
+                        <i class="fa-solid fa-user-shield fa-fw"></i>
+                        <strong>Role-Based Access:</strong> Information is secured based on your departmental credentials.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Business Intelligence Portal. Confidential & Proprietary.</p>
+    </footer>
+
+    <script src="static/js/main.js"></script>
+</body>
+</html>

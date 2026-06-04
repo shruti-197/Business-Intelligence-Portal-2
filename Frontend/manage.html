@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Data - Business Intelligence Dashboard</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <i class="fa-solid fa-chart-pie"></i>
+            Business Intelligence Portal
+        </a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            <li><a href="insights.html" class="nav-link">Insights</a></li>
+            <li><a href="manage.html" class="nav-link">Manage Data</a></li>
+            <li><a href="about.html" class="nav-link">Support</a></li>
+            <li><a href="login.html" class="nav-link"><i class="fa-solid fa-user-circle"></i> Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h1 class="page-title" style="margin-bottom: 0;">Product Data Management</h1>
+            <button class="btn btn-primary" id="openModalBtn">
+                <i class="fa-solid fa-plus"></i> Add New Product
+            </button>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title" style="font-size: 1.25rem;">Active Inventory Records</h2>
+            <p style="color: var(--text-light); margin-bottom: 1rem;">Administrator privileges allow you to insert, update, or delete records. Changes here will propagate to the SQL Server and update the Power BI dashboard accordingly.</p>
+            
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                            <th>Region</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="salesData">
+                        <!-- Data will be injected here by main.js -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Business Intelligence Portal. Confidential & Proprietary.</p>
+    </footer>
+
+    <!-- Add Product Modal -->
+    <div class="modal-overlay" id="addProductModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModalBtn"><i class="fa-solid fa-times"></i></button>
+            <h2 class="modal-header">Add New Product</h2>
+            <form id="addProductForm" class="login-form">
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" id="productName" name="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="categorySelect">Category</label>
+                    <select id="categorySelect" name="categorySelect" required onchange="toggleNewCategory()">
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Accessories">Accessories</option>
+                        <option value="Misc">Misc</option>
+                        <option value="Other">Other (Add New)</option>
+                    </select>
+                    <input type="text" id="newCategory" name="newCategory" placeholder="Enter new category name" style="display: none; margin-top: 0.5rem;">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price (₹)</label>
+                    <input type="number" id="price" name="price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity in Stock</label>
+                    <input type="number" id="quantity" name="quantity" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="regionSelect">Region</label>
+                    <select id="regionSelect" name="regionSelect" required onchange="toggleNewRegion()">
+                        <option value="" disabled selected>Select a region</option>
+                        <option value="West">West</option>
+                        <option value="North">North</option>
+                        <option value="East">East</option>
+                        <option value="South">South</option>
+                        <option value="Central">Central</option>
+                        <option value="North America">North America</option>
+                        <option value="Other">Other (Add New)</option>
+                    </select>
+                    <input type="text" id="newRegion" name="newRegion" placeholder="Enter new region name" style="display: none; margin-top: 0.5rem;">
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Save Product</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div class="modal-overlay" id="editProductModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeEditModalBtn"><i class="fa-solid fa-times"></i></button>
+            <h2 class="modal-header">Edit Product</h2>
+            <form id="editProductForm" class="login-form">
+                <input type="hidden" id="editProductId" name="editProductId">
+                <div class="form-group">
+                    <label for="editProductName">Product Name</label>
+                    <input type="text" id="editProductName" name="editProductName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editCategorySelect">Category</label>
+                    <select id="editCategorySelect" name="editCategorySelect" required onchange="toggleEditNewCategory()">
+                        <option value="" disabled>Select a category</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Accessories">Accessories</option>
+                        <option value="Misc">Misc</option>
+                        <option value="Other">Other (Add New)</option>
+                    </select>
+                    <input type="text" id="editNewCategory" name="editNewCategory" placeholder="Enter new category name" style="display: none; margin-top: 0.5rem;">
+                </div>
+                <div class="form-group">
+                    <label for="editPrice">Price (₹)</label>
+                    <input type="number" id="editPrice" name="editPrice" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="editQuantity">Quantity in Stock</label>
+                    <input type="number" id="editQuantity" name="editQuantity" required>
+                </div>
+                <div class="form-group">
+                    <label for="editDate">Date</label>
+                    <input type="date" id="editDate" name="editDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="editRegionSelect">Region</label>
+                    <select id="editRegionSelect" name="editRegionSelect" required onchange="toggleEditNewRegion()">
+                        <option value="" disabled>Select a region</option>
+                        <option value="West">West</option>
+                        <option value="North">North</option>
+                        <option value="East">East</option>
+                        <option value="South">South</option>
+                        <option value="Central">Central</option>
+                        <option value="North America">North America</option>
+                        <option value="Other">Other (Add New)</option>
+                    </select>
+                    <input type="text" id="editNewRegion" name="editNewRegion" placeholder="Enter new region name" style="display: none; margin-top: 0.5rem;">
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Update Product</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="static/js/main.js"></script>
+</body>
+</html>

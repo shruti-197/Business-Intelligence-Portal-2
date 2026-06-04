@@ -1,0 +1,5 @@
+employee_id,name,email,password,role
+1,System Admin,admin@company.com,admin123,admin
+2,Sales Manager,manager@company.com,manager123,admin
+3,Standard Employee,employee@company.com,password,user
+4,Data Analyst,analyst@company.com,password,user

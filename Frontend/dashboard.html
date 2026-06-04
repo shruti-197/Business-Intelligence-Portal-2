@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Business Intelligence Portal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <i class="fa-solid fa-chart-pie"></i>
+            Business Intelligence Portal
+        </a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+            <li><a href="insights.html" class="nav-link">Insights</a></li>
+            <li><a href="manage.html" class="nav-link">Manage Data</a></li>
+            <li><a href="about.html" class="nav-link">Support</a></li>
+            <li><a href="login.html" class="nav-link"><i class="fa-solid fa-user-circle"></i> Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h1 class="page-title" style="margin-bottom: 0;">Sales Performance Dashboard</h1>
+            <div>
+                <button class="btn btn-primary" onclick="alert('Data refresh will trigger an extraction from the primary DB.')">
+                    <i class="fa-solid fa-rotate-right"></i> Refresh Data
+                </button>
+            </div>
+        </div>
+
+        <div class="kpi-strip" id="dashboard-kpi-strip">
+            <!-- Dynamic KPIs injected by main.js -->
+            <div class="kpi-card-mini pulse-hover">
+                <div class="kpi-icon-wrap icon-blue"><i class="fa-solid fa-dollar-sign"></i></div>
+                <div class="kpi-info">
+                    <span class="kpi-label">Total Sales</span>
+                    <span class="kpi-val" id="dash-kpi-total">Loading...</span>
+                </div>
+            </div>
+            <div class="kpi-card-mini pulse-hover">
+                <div class="kpi-icon-wrap icon-green"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+                <div class="kpi-info">
+                    <span class="kpi-label">Avg Sales</span>
+                    <span class="kpi-val" id="dash-kpi-avg">Loading...</span>
+                </div>
+            </div>
+            <div class="kpi-card-mini pulse-hover">
+                <div class="kpi-icon-wrap icon-orange"><i class="fa-solid fa-earth-americas"></i></div>
+                <div class="kpi-info">
+                    <span class="kpi-label">Top Region</span>
+                    <span class="kpi-val" id="dash-kpi-region" style="font-size: 1.2rem;">Loading...</span>
+                </div>
+            </div>
+            <div class="kpi-card-mini pulse-hover">
+                <div class="kpi-icon-wrap icon-purple"><i class="fa-solid fa-boxes-stacked"></i></div>
+                <div class="kpi-info">
+                    <span class="kpi-label">Top Product</span>
+                    <span class="kpi-val" id="dash-kpi-product" style="font-size: 1.2rem;">Loading...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="padding: 1rem;">
+            <div class="dashboard-container">
+                <!-- 
+                Replace the div below with an actual iframe when integrating with Power BI.
+                Example:
+                <iframe title="Sales Dashboard" class="dashboard-iframe" src="YOUR_POWER_BI_EMBED_URL" frameborder="0" allowFullScreen="true"></iframe>
+                -->
+                <div class="placeholder-text">
+                    <i class="fa-solid fa-chart-line fa-4x" style="color: var(--secondary-color);"></i>
+                    <div>Power BI Dashboard Embedded Here</div>
+                    <small style="font-weight: normal; font-size: 1rem;">(Interactive iframe placeholder)</small>
+                </div>
+            </div>
+            <p class="dashboard-caption">Interactive Power BI Dashboard — Use filters within the dashboard to drill down into specific regional and product metrics.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Business Intelligence Portal. Confidential & Proprietary.</p>
+    </footer>
+
+    <script src="static/js/main.js"></script>
+</body>
+</html>
