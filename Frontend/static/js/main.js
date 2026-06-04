@@ -432,4 +432,107 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 150 * index);
         });
     }
+
+    // 8. Power BI Dashboard Embedding Logic
+    if (filename === 'dashboard.html') {
+        const embedModal = document.getElementById('embedModal');
+        const openEmbedModalBtn = document.getElementById('openEmbedModalBtn');
+        const closeEmbedModalBtn = document.getElementById('closeEmbedModalBtn');
+        const embedForm = document.getElementById('embedForm');
+        const powerBiUrlInput = document.getElementById('powerBiUrl');
+        const clearEmbedBtn = document.getElementById('clearEmbedBtn');
+        const dashboardContainer = document.querySelector('.dashboard-container');
+
+        // Store original placeholder HTML to restore it when needed
+        const defaultPlaceholderHTML = `
+            <div class="placeholder-text">
+                <i class="fa-solid fa-chart-line fa-4x" style="color: var(--secondary-color);"></i>
+                <div>Power BI Dashboard Embedded Here</div>
+                <small style="font-weight: normal; font-size: 1rem;">(Interactive iframe placeholder)</small>
+            </div>
+        `;
+
+        // Load saved dashboard
+        function loadDashboard() {
+            const savedUrl = localStorage.getItem('powerBiDashboardUrl');
+            if (savedUrl && dashboardContainer) {
+                dashboardContainer.innerHTML = `<iframe title="Sales Performance Dashboard" class="dashboard-iframe" src="${savedUrl}" frameborder="0" allowFullScreen="true"></iframe>`;
+                if (powerBiUrlInput) powerBiUrlInput.value = savedUrl;
+            } else if (dashboardContainer) {
+                dashboardContainer.innerHTML = defaultPlaceholderHTML;
+                if (powerBiUrlInput) powerBiUrlInput.value = '';
+            }
+        }
+
+        loadDashboard();
+
+        // Modal Controls
+        if (openEmbedModalBtn && embedModal) {
+            openEmbedModalBtn.addEventListener('click', () => {
+                const savedUrl = localStorage.getItem('powerBiDashboardUrl') || '';
+                if (powerBiUrlInput) powerBiUrlInput.value = savedUrl;
+                embedModal.classList.add('active');
+            });
+        }
+
+        if (closeEmbedModalBtn && embedModal) {
+            closeEmbedModalBtn.addEventListener('click', () => {
+                embedModal.classList.remove('active');
+            });
+        }
+
+        // Close on clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === embedModal) {
+                embedModal.classList.remove('active');
+            }
+        });
+
+        // Form Submit
+        if (embedForm) {
+            embedForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let urlValue = powerBiUrlInput.value.trim();
+                
+                if (!urlValue) {
+                    alert('Please enter a valid URL or iframe code.');
+                    return;
+                }
+
+                // If it looks like an iframe tag, extract the src attribute
+                if (urlValue.startsWith('<iframe') || urlValue.includes('src=')) {
+                    const srcMatch = urlValue.match(/src=["']([^"']+)["']/i);
+                    if (srcMatch && srcMatch[1]) {
+                        urlValue = srcMatch[1];
+                    } else {
+                        alert('Could not find a valid "src" attribute in the iframe code. Please check your input.');
+                        return;
+                    }
+                }
+
+                // Validate URL format roughly
+                if (!urlValue.startsWith('http://') && !urlValue.startsWith('https://')) {
+                    alert('Please enter a valid URL (starting with http:// or https://)');
+                    return;
+                }
+
+                localStorage.setItem('powerBiDashboardUrl', urlValue);
+                loadDashboard();
+                embedModal.classList.remove('active');
+                alert('Power BI dashboard embed link updated successfully!');
+            });
+        }
+
+        // Clear/Reset
+        if (clearEmbedBtn) {
+            clearEmbedBtn.addEventListener('click', () => {
+                if (confirm('Are you sure you want to reset to the default dashboard placeholder?')) {
+                    localStorage.removeItem('powerBiDashboardUrl');
+                    loadDashboard();
+                    embedModal.classList.remove('active');
+                    alert('Reset to default placeholder.');
+                }
+            });
+        }
+    }
 });

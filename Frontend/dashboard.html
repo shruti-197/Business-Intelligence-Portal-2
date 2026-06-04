@@ -30,9 +30,12 @@
     <main class="container">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
             <h1 class="page-title" style="margin-bottom: 0;">Sales Performance Dashboard</h1>
-            <div>
+            <div style="display: flex; gap: 0.5rem;">
                 <button class="btn btn-primary" onclick="alert('Data refresh will trigger an extraction from the primary DB.')">
                     <i class="fa-solid fa-rotate-right"></i> Refresh Data
+                </button>
+                <button class="btn btn-primary" id="openEmbedModalBtn" style="background-color: var(--primary-color);">
+                    <i class="fa-solid fa-gears"></i> Embed Dashboard
                 </button>
             </div>
         </div>
@@ -89,6 +92,27 @@
     <footer>
         <p>&copy; 2026 Business Intelligence Portal. Confidential & Proprietary.</p>
     </footer>
+
+    <!-- Embed Dashboard Modal -->
+    <div class="modal-overlay" id="embedModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeEmbedModalBtn">&times;</button>
+            <h2 class="modal-header">Configure Power BI Dashboard</h2>
+            <form id="embedForm" class="login-form">
+                <div class="form-group">
+                    <label for="powerBiUrl">Power BI Embed URL or iframe code</label>
+                    <textarea id="powerBiUrl" rows="4" style="padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; resize: vertical;" placeholder="Paste your Power BI Publish-to-Web link or iframe code here..."></textarea>
+                    <small style="color: var(--text-light); font-size: 0.85rem; margin-top: 0.25rem;">
+                        In Power BI Desktop or Service, go to <strong>File -> Share -> Publish to web (public)</strong> or <strong>Embed report</strong>, and copy the link or iframe HTML code.
+                    </small>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem;">
+                    <button type="button" class="btn" id="clearEmbedBtn" style="background-color: #e74c3c; color: var(--white); font-weight: 500; padding: 0.5rem 1rem;">Reset to Default</button>
+                    <button type="submit" class="btn btn-primary" style="font-weight: 500; padding: 0.5rem 1rem;">Save & Apply</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script src="static/js/main.js"></script>
 </body>
