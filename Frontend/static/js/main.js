@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     localStorage.removeItem('userRole');
+                    localStorage.removeItem('userEmail');
                     alert('You have been logged out.');
                     window.location.href = 'index.html';
                 });
@@ -87,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (data.success) {
                     localStorage.setItem('userRole', data.role);
+                    localStorage.setItem('userEmail', usernameInput.toLowerCase().trim());
                     alert(`Logged in as ${data.name} (${data.role})`);
                     if (data.role === 'admin') {
                         window.location.href = 'manage.html';
@@ -442,6 +444,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const powerBiUrlInput = document.getElementById('powerBiUrl');
         const clearEmbedBtn = document.getElementById('clearEmbedBtn');
         const dashboardContainer = document.querySelector('.dashboard-container');
+        const currentUserDisplay = document.getElementById('currentUserDisplay');
+
+        const userEmail = localStorage.getItem('userEmail') || 'default';
+        const userKey = `powerBiDashboardUrl_${userEmail}`;
+
+        // Display current user email in modal
+        if (currentUserDisplay) {
+            currentUserDisplay.textContent = userEmail;
+        }
 
         // Store original placeholder HTML to restore it when needed
         const defaultPlaceholderHTML = `
@@ -452,9 +463,9 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
 
-        // Load saved dashboard
+        // Load saved dashboard (checks user-specific key, falls back to legacy/global key)
         function loadDashboard() {
-            const savedUrl = localStorage.getItem('powerBiDashboardUrl');
+            const savedUrl = localStorage.getItem(userKey) || localStorage.getItem('powerBiDashboardUrl');
             if (savedUrl && dashboardContainer) {
                 dashboardContainer.innerHTML = `<iframe title="Sales Performance Dashboard" class="dashboard-iframe" src="${savedUrl}" frameborder="0" allowFullScreen="true"></iframe>`;
                 if (powerBiUrlInput) powerBiUrlInput.value = savedUrl;
@@ -469,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Modal Controls
         if (openEmbedModalBtn && embedModal) {
             openEmbedModalBtn.addEventListener('click', () => {
-                const savedUrl = localStorage.getItem('powerBiDashboardUrl') || '';
+                const savedUrl = localStorage.getItem(userKey) || localStorage.getItem('powerBiDashboardUrl') || '';
                 if (powerBiUrlInput) powerBiUrlInput.value = savedUrl;
                 embedModal.classList.add('active');
             });
@@ -516,10 +527,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                localStorage.setItem('powerBiDashboardUrl', urlValue);
+                localStorage.setItem(userKey, urlValue);
                 loadDashboard();
                 embedModal.classList.remove('active');
-                alert('Power BI dashboard embed link updated successfully!');
+                alert(`Power BI dashboard embed link updated successfully for ${userEmail}!`);
             });
         }
 
@@ -527,7 +538,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (clearEmbedBtn) {
             clearEmbedBtn.addEventListener('click', () => {
                 if (confirm('Are you sure you want to reset to the default dashboard placeholder?')) {
-                    localStorage.removeItem('powerBiDashboardUrl');
+                    localStorage.removeItem(userKey);
+                    localStorage.removeItem('powerBiDashboardUrl'); // clear legacy fallback too
                     loadDashboard();
                     embedModal.classList.remove('active');
                     alert('Reset to default placeholder.');

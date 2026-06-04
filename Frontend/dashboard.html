@@ -97,7 +97,10 @@
     <div class="modal-overlay" id="embedModal">
         <div class="modal-content">
             <button class="modal-close" id="closeEmbedModalBtn">&times;</button>
-            <h2 class="modal-header">Configure Power BI Dashboard</h2>
+            <h2 class="modal-header" style="margin-bottom: 0.5rem;">Configure Power BI Dashboard</h2>
+            <div style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1.5rem;">
+                Configuring dashboard for user: <strong id="currentUserDisplay" style="color: var(--primary-color);">default</strong>
+            </div>
             <form id="embedForm" class="login-form">
                 <div class="form-group">
                     <label for="powerBiUrl">Power BI Embed URL or iframe code</label>
